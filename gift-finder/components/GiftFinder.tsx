@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Gift, MapPin, ChevronRight, ChevronLeft, ChevronDown, Loader2, RotateCcw } from 'lucide-react';
 import { FormData, Step, Gift as GiftType } from '@/types';
 import {
@@ -26,6 +26,11 @@ export default function GiftFinder() {
   const [gifts, setGifts] = useState<GiftType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Auto-scroll to top on step change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
 
   const filteredLocations = useMemo(() => {
     if (!locationQuery) return [];
