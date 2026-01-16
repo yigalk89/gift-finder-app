@@ -18,6 +18,7 @@ export interface Gift {
   price: string;
   type: string;
   description: string;
+  explanation: string;
   shop: string;
   category: string;
   emoji: string;
