@@ -50,7 +50,7 @@
   - [ ] Show all selected preferences (relationship, budget, interests, etc.)
   - [ ] Add inline edit functionality to modify parameters without going back
   - [ ] Design compact, visually appealing summary card
-- [ ] Implement auto-scroll to top on mobile when proceeding between steps
+- [x] Implement auto-scroll to top on mobile when proceeding between steps
 - [ ] Add free text input field for additional personalization notes
   - [ ] Implement LLM injection protection and input sanitization
   - [ ] Add character limit and validation
