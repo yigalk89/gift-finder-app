@@ -1,4 +1,4 @@
-import { Option } from '@/types';
+import { Option, Gift } from '@/types';
 
 export const RELATIONSHIPS: Option[] = [
   { value: 'parent', label: 'Parent', emoji: '👨‍👩‍👧' },
@@ -116,3 +116,60 @@ export const INITIAL_FORM_DATA = {
   interests: [],
   personalityTraits: [],
 };
+
+export const MOCK_GIFTS: Gift[] = [
+  {
+    name: 'Premium Coffee Maker',
+    price: '$89',
+    type: 'tangible',
+    description: 'A high-quality coffee maker for the perfect morning brew. Features programmable settings and thermal carafe.',
+    shop: 'Amazon',
+    category: 'Home & Kitchen',
+    emoji: '☕',
+  },
+  {
+    name: 'Yoga Class Package',
+    price: '$120',
+    type: 'experience',
+    description: 'A 10-class package at a local yoga studio. Perfect for relaxation and fitness enthusiasts.',
+    shop: 'Local Yoga Studio',
+    category: 'Health & Wellness',
+    emoji: '🧘',
+  },
+  {
+    name: 'Wireless Headphones',
+    price: '$149',
+    type: 'tangible',
+    description: 'Premium noise-canceling wireless headphones with exceptional sound quality and 30-hour battery life.',
+    shop: 'Best Buy',
+    category: 'Electronics',
+    emoji: '🎧',
+  },
+  {
+    name: 'Gourmet Cooking Class',
+    price: '$95',
+    type: 'experience',
+    description: 'Learn to cook authentic Italian cuisine from a professional chef in a hands-on cooking class.',
+    shop: 'Sur La Table',
+    category: 'Food & Dining',
+    emoji: '👨‍🍳',
+  },
+  {
+    name: 'Smart Watch',
+    price: '$249',
+    type: 'tangible',
+    description: 'Feature-rich smartwatch with fitness tracking, heart rate monitor, and customizable watch faces.',
+    shop: 'Target',
+    category: 'Technology',
+    emoji: '⌚',
+  },
+  {
+    name: 'Spa Day Package',
+    price: '$175',
+    type: 'experience',
+    description: 'Luxurious spa package including massage, facial, and access to spa facilities for ultimate relaxation.',
+    shop: 'Local Spa & Wellness',
+    category: 'Health & Wellness',
+    emoji: '💆',
+  },
+];

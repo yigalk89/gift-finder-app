@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Gift, MapPin, ChevronRight, ChevronLeft, ChevronDown } from 'lucide-react';
-import { FormData, Step } from '@/types';
+import { Gift, MapPin, ChevronRight, ChevronLeft, ChevronDown, Loader2, RotateCcw } from 'lucide-react';
+import { FormData, Step, Gift as GiftType } from '@/types';
 import {
   RELATIONSHIPS,
   BUDGETS,
@@ -13,14 +13,19 @@ import {
   PERSONALITY_TRAITS,
   MOCK_LOCATIONS,
   INITIAL_FORM_DATA,
+  MOCK_GIFTS,
 } from '@/lib/constants';
 import StepIndicator from './StepIndicator';
+import GiftCard from './GiftCard';
 
 export default function GiftFinder() {
   const [currentStep, setCurrentStep] = useState<Step>(1);
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [locationQuery, setLocationQuery] = useState('');
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const [gifts, setGifts] = useState<GiftType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const filteredLocations = useMemo(() => {
     if (!locationQuery) return [];
@@ -69,12 +74,50 @@ export default function GiftFinder() {
     );
   }, [formData]);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentStep === 1 && isStep1Valid) {
       setCurrentStep(2);
     } else if (currentStep === 2 && isStep2Valid) {
       setCurrentStep(3);
+      await generateGifts();
     }
+  };
+
+  const generateGifts = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/generate-gifts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate gift recommendations');
+      }
+
+      const data = await response.json();
+      setGifts(data.gifts);
+    } catch (err) {
+      console.error('Error generating gifts:', err);
+      setError('Unable to generate personalized recommendations. Showing general gift ideas instead.');
+      // Fallback to mock data
+      setGifts(MOCK_GIFTS);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleStartOver = () => {
+    setCurrentStep(1);
+    setFormData(INITIAL_FORM_DATA);
+    setLocationQuery('');
+    setGifts([]);
+    setError(null);
   };
 
   const handleBack = () => {
@@ -418,8 +461,63 @@ export default function GiftFinder() {
           )}
 
           {currentStep === 3 && (
-            <div className="text-center py-12 text-gray-500">
-              Step 3: Recommendations (Coming soon)
+            <div className="space-y-6">
+              {/* Header with Start Over Button */}
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-800">Your Gift Recommendations</h2>
+                <button
+                  onClick={handleStartOver}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-purple-600
+                           hover:bg-purple-50 rounded-xl transition-colors duration-200"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Start Over
+                </button>
+              </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+                  <p className="text-sm text-yellow-800">{error}</p>
+                </div>
+              )}
+
+              {/* Loading State */}
+              {isLoading && (
+                <div className="flex flex-col items-center justify-center py-16">
+                  <Loader2 className="w-12 h-12 text-purple-600 animate-spin mb-4" />
+                  <p className="text-lg font-medium text-gray-700 mb-2">
+                    Finding perfect gifts...
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    Our AI is analyzing your preferences
+                  </p>
+                </div>
+              )}
+
+              {/* Gift Cards Grid */}
+              {!isLoading && gifts.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {gifts.map((gift, index) => (
+                    <GiftCard key={index} gift={gift} />
+                  ))}
+                </div>
+              )}
+
+              {/* Back Button */}
+              {!isLoading && (
+                <div className="flex justify-center pt-4">
+                  <button
+                    onClick={handleBack}
+                    className="px-6 py-3 rounded-xl font-semibold text-gray-700
+                             bg-gray-100 hover:bg-gray-200
+                             flex items-center gap-2 transition-all duration-200"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                    Modify Preferences
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
