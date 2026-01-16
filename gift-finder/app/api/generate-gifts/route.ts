@@ -89,14 +89,15 @@ IMPORTANT: Respond ONLY with a valid JSON array of exactly 6 gift recommendation
     "name": "Gift Name",
     "price": "$XX",
     "type": "tangible or experience",
-    "description": "Brief description explaining why this gift is perfect",
+    "description": "Brief description of the gift and its features",
+    "explanation": "Personalized explanation of why this gift matches the recipient's profile, interests, and personality traits",
     "shop": "Where to buy this gift",
     "category": "Category name",
     "emoji": "🎁"
   }
 ]
 
-Remember: Return ONLY the JSON array, no other text or formatting.`;
+Remember: Return ONLY the JSON array, no other text or formatting. Each gift MUST include an explanation field that connects the gift to the recipient's specific interests, personality traits, and preferences.`;
 }
 
 function parseGiftsResponse(text: string): Gift[] {

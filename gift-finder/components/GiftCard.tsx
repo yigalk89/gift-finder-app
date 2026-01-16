@@ -1,5 +1,5 @@
 import { Gift } from '@/types';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Sparkles } from 'lucide-react';
 
 interface GiftCardProps {
   gift: Gift;
@@ -19,6 +19,17 @@ export default function GiftCard({ gift }: GiftCardProps) {
 
       {/* Description */}
       <p className="text-gray-600 mb-4 min-h-[60px]">{gift.description}</p>
+
+      {/* Why We Recommend This */}
+      <div className="mb-4 p-3 bg-purple-50 rounded-lg border border-purple-100">
+        <div className="flex items-start gap-2">
+          <Sparkles size={16} className="text-purple-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-xs font-semibold text-purple-800 mb-1">Why we picked this</p>
+            <p className="text-sm text-purple-900 leading-relaxed">{gift.explanation}</p>
+          </div>
+        </div>
+      </div>
 
       {/* Shop */}
       <div className="mb-4">
