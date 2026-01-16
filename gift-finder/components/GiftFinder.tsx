@@ -147,12 +147,11 @@ export default function GiftFinder() {
                     value={locationQuery}
                     onChange={(e) => {
                       setLocationQuery(e.target.value);
+                      handleFieldChange('location', e.target.value);
                       setShowLocationDropdown(true);
-                      if (!e.target.value) {
-                        handleFieldChange('location', '');
-                      }
                     }}
                     onFocus={() => setShowLocationDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowLocationDropdown(false), 200)}
                     placeholder="Enter city or zip code"
                     className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl
                              focus:ring-2 focus:ring-purple-500 focus:border-transparent

@@ -18,10 +18,9 @@
   - [x] Personality traits multi-select (9 options)
 - [x] Form validation for Steps 1 & 2
 - [x] Navigation between steps (back/next buttons)
-
-## In Progress
-- [ ] GitHub repository setup
-- [ ] Vercel deployment
+- [x] GitHub repository setup
+- [x] Vercel deployment
+- [x] Fix location input to save on typing (not just dropdown selection)
 
 ## TODO
 ### Step 3: Recommendations Display
@@ -41,6 +40,7 @@
 ### Additional Features
 - [ ] "Start Over" functionality to reset form
 - [ ] Mock gift data for API fallback
+- [ ] Google Places API integration for location autocomplete
 
 ### Deployment
 - [ ] Set up environment variable (ANTHROPIC_API_KEY) in Vercel
