@@ -1,0 +1,25 @@
+# Dependencies
+gift-finder/node_modules/
+
+# Next.js build output
+gift-finder/.next/
+gift-finder/out/
+
+# Production
+gift-finder/build/
+
+# Debug
+npm-debug.log*
+
+# Local env files
+gift-finder/.env*.local
+
+# Vercel
+gift-finder/.vercel
+
+# TypeScript
+*.tsbuildinfo
+gift-finder/next-env.d.ts
+
+# OS
+.DS_Store
