@@ -42,8 +42,35 @@
 - [x] Mock gift data for API fallback
 
 ## TODO (Future Enhancements)
+
+### Phase 4: Enhanced Recommendations & UX Improvements
+- [ ] Increase gift recommendations from 6 to 9 results
+- [ ] Add AI-generated explanations for why each gift was recommended
+- [ ] Add parameter summary display at recommendations phase
+  - [ ] Show all selected preferences (relationship, budget, interests, etc.)
+  - [ ] Add inline edit functionality to modify parameters without going back
+  - [ ] Design compact, visually appealing summary card
+- [ ] Implement auto-scroll to top on mobile when proceeding between steps
+- [ ] Add free text input field for additional personalization notes
+  - [ ] Implement LLM injection protection and input sanitization
+  - [ ] Add character limit and validation
+  - [ ] Sanitize user input before sending to API
+
 ### Additional Features
 - [ ] Google Places API integration for location autocomplete
+
+### Phase 5: E-Commerce Integration (Future Project)
+- [ ] Direct purchase integration with local vendor
+  - [ ] Research and select local vendor API
+  - [ ] Implement product availability checking
+  - [ ] Add shopping cart functionality
+  - [ ] Implement secure checkout flow
+  - [ ] Handle payment processing
+- [ ] Affiliate link integration
+  - [ ] Research affiliate networks (Amazon, ShareASale, etc.)
+  - [ ] Implement dynamic affiliate link generation
+  - [ ] Add tracking and analytics
+  - [ ] Handle commission tracking
 
 ### Deployment
 - [ ] Set up environment variable (ANTHROPIC_API_KEY) in Vercel
