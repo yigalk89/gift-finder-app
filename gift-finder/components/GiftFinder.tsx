@@ -17,6 +17,7 @@ import {
 } from '@/lib/constants';
 import StepIndicator from './StepIndicator';
 import GiftCard from './GiftCard';
+import ParameterSummary from './ParameterSummary';
 
 export default function GiftFinder() {
   const [currentStep, setCurrentStep] = useState<Step>(1);
@@ -479,6 +480,14 @@ export default function GiftFinder() {
                   Start Over
                 </button>
               </div>
+
+              {/* Parameter Summary */}
+              <ParameterSummary
+                formData={formData}
+                onFieldChange={handleFieldChange}
+                onRegenerate={generateGifts}
+                isRegenerating={isLoading}
+              />
 
               {/* Error Message */}
               {error && (
